@@ -1,0 +1,33 @@
+# 購入履歴情報を取得するための，楽天のログイン情報
+login:
+  rakuten:
+    user: 楽天のユーザ名
+    pass: 楽天のパスワード
+
+# データ収集で使用する一時ファイルの置き場所
+data:
+  # Web ブラウザの作業フォルダ
+  selenium: data
+
+  # デバッグ用のファイルを生成するフォルダ
+  debug: data/debug
+
+  # 購入履歴関係のデータ
+  rakuten:
+    cache:
+      # 収集した購入履歴情報 (どこまで取集したかの管理データ含む)
+      order: data/rakuten/cache.dat
+      # サムネイル画像
+      thumb: data/rakuten/thumb
+
+# 出力ファイルの置き場所
+output:
+  excel:
+    # フォント
+    font:
+      name: BIZ UDGothic
+      size: 12
+    # 購入履歴が記載されたファイル
+    table: output/rakhist.xlsx
+
+
