@@ -243,17 +243,6 @@ def parse_order_default(handle, order_info):
 
     driver, wait = store_rakuten.handle.get_selenium_driver(handle)
 
-    if local_lib.selenium_util.xpath_exists(driver, '//ul[contains(@class, "mypage_cxl_mordal_text_error")]'):
-        logging.warning(
-            "Error occured: {message}".format(
-                message=driver.find_element(
-                    By.XPATH, '//ul[contains(@class, "mypage_cxl_mordal_text_error")]'
-                ).text
-            )
-        )
-
-        return False
-
     date_text = driver.find_element(
         By.XPATH, '//div[contains(@class, "oDrSpecOrderInfo")]//td[contains(@class, "orderDate")]'
     ).text
@@ -293,6 +282,17 @@ def parse_order(handle, order_info):
             no=order_info["no"],
         )
     )
+
+    if local_lib.selenium_util.xpath_exists(driver, '//ul[contains(@class, "mypage_cxl_mordal_text_error")]'):
+        logging.warning(
+            "Error occured: {message}".format(
+                message=driver.find_element(
+                    By.XPATH, '//ul[contains(@class, "mypage_cxl_mordal_text_error")]'
+                ).text
+            )
+        )
+
+        return False
 
     if order_info["seller"] == "楽天ブックス":
         is_unempty = parse_order_book(handle, order_info)
